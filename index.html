@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D.K fitness</title>
+
+    <!-- favicon (לשונית/כרטיסייה) -->
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" href="dk_fitness_icon_512.png" />
+
+    <!-- פונט -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="top-strip" aria-hidden="true"></div>
+
+    <!-- HEADER -->
+    <header class="header" id="top">
+      <div class="container header__inner">
+        <!-- לוגו + שם -->
+        <a class="brand" href="#top" aria-label="D.K fitness">
+          <span class="brand__icon" aria-hidden="true">
+            <img
+              class="brand__logo"
+              src="dk_fitness_icon_512.png"
+              alt="D.K fitness"
+            />
+          </span>
+          <span class="brand__name">D.K fitness</span>
+        </a>
+
+        <button
+          class="navToggle"
+          type="button"
+          aria-label="פתיחת תפריט"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+
+        <nav class="nav" data-nav>
+          <a class="nav__link" href="#about">איך זה עובד</a>
+          <a class="nav__link" href="#services">מה אתם מקבלים</a>
+
+          <a
+            class="btn btn--primary nav__cta"
+            href="#"
+            data-wa
+            data-phone="972558813090"
+          >
+            שלח/י הודעה <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="כותרת ראשית">
+      <div
+        class="hero__bg"
+        style="--hero-img: url('hero background.jpg')"
+        aria-hidden="true"
+      ></div>
+
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__gridlines" aria-hidden="true"></div>
+
+      <div class="container hero__inner">
+        <div class="hero__big" aria-hidden="true">DK FITNESS</div>
+
+        <div class="hero__content" data-reveal>
+          <h1 class="hero__title">
+            <span class="hero__titleAccent">ליווי אונליין</span>
+            <span class="hero__titleMain">אימון + תזונה</span>
+          </h1>
+
+          <p class="hero__sub">
+            מוכנ/ה לשנות את הגוף, אבל צריך מסגרת ברורה? אצלנו זה מתחיל בשיחת
+            אפיון, ממשיך להתאמה לפי <b>BMI / BMR</b>,ומתקדם עם
+            <b>מעקב שבועי</b> וכלים לשמירה על התוצאה.
+          </p>
+
+          <div class="hero__actions">
+            <a
+              class="btn btn--primary btn--lg"
+              href="#"
+              data-wa
+              data-phone="972558813090"
+            >
+              להתחיל בוואטסאפ <span aria-hidden="true">↗</span>
+            </a>
+
+            <a class="btn btn--ghost btn--lg" href="#about">
+              לראות איך זה עובד
+            </a>
+          </div>
+
+          <div class="highlights" data-reveal>
+            <article class="highlight">
+              <div class="highlight__title">שיחת אפיון</div>
+              <div class="highlight__text">מטרות + שגרה + תכנון</div>
+            </article>
+
+            <article class="highlight">
+              <div class="highlight__title">תזונה מותאמת</div>
+              <div class="highlight__text">לפי BMI/BMR והעדפות</div>
+            </article>
+
+            <article class="highlight">
+              <div class="highlight__title">תוכנית אימונים</div>
+              <div class="highlight__text">בית / חדר כושר</div>
+            </article>
+
+            <article class="highlight">
+              <div class="highlight__title">מעקב שבועי</div>
+              <div class="highlight__text">מדידה + התאמות</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <!-- ABOUT -->
+      <section class="section" id="about" aria-label="אודות">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <div class="section__num">01</div>
+            <div>
+              <p class="section__kicker">D.K fitness</p>
+              <h2 class="section__title">איך זה עובד</h2>
+              <p class="section__desc">
+                תהליך קצר, ברור ומדיד, עם התאמה אישית מלאה וקצב שמתאים לשגרה
+                שלך.
+              </p>
+            </div>
+          </header>
+
+          <div class="about" data-reveal>
+            <div
+              class="about__media"
+              style="--about-img: url('kettlebell_pic.jpg')"
+              aria-label="תמונת kettlebell"
+            >
+              <div class="about__mediaShade" aria-hidden="true"></div>
+            </div>
+
+            <div class="about__card">
+              <h3 class="about__headline">עוזרים לך להגיע ליעד, ולשמור עליו</h3>
+
+              <p class="about__text">
+                הליווי בנוי כך שהכול ברור: מה עושים, מתי עושים ולמה זה עובד. בלי
+                ניחושים ובלי “לזרום”, אלא מסגרת שמייצרת תוצאה.
+              </p>
+
+              <ol class="steps" aria-label="שלבי הליווי">
+                <li class="step">
+                  <span class="step__dot" aria-hidden="true"></span>
+                  <div>
+                    <strong class="step__title">שיחת אפיון והצבת מטרות</strong>
+                    <div class="step__text">
+                      נבין מה היעד שלך ומה שגרת החיים בפועל.
+                    </div>
+                  </div>
+                </li>
+
+                <li class="step">
+                  <span class="step__dot" aria-hidden="true"></span>
+                  <div>
+                    <strong class="step__title">התאמה לפי BMI/BMR</strong>
+                    <div class="step__text">
+                      תפריט + אימון שמבוססים על נתונים ולא על ניחושים.
+                    </div>
+                  </div>
+                </li>
+
+                <li class="step">
+                  <span class="step__dot" aria-hidden="true"></span>
+                  <div>
+                    <strong class="step__title">מעקב נתונים שבועי</strong>
+                    <div class="step__text">
+                      בדיקה והתקדמות, התאמות חכמות שממשיכות קדימה.
+                    </div>
+                  </div>
+                </li>
+
+                <li class="step">
+                  <span class="step__dot" aria-hidden="true"></span>
+                  <div>
+                    <strong class="step__title">סט כלים לשימור התוצאה</strong>
+                    <div class="step__text">
+                      ההרגלים נשארים איתך גם אחרי שהגעת ליעד.
+                    </div>
+                  </div>
+                </li>
+              </ol>
+
+              <div class="about__cta">
+                <a
+                  class="btn btn--primary"
+                  href="#"
+                  data-wa
+                  data-phone="972558813090"
+                >
+                  רוצה שיחת אפיון? דבר/י איתי <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section
+        class="section section--dark"
+        id="services"
+        aria-label="השירותים"
+      >
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <div class="section__num">02</div>
+            <div>
+              <p class="section__kicker">D.K fitness</p>
+              <h2 class="section__title">מה אתם מקבלים</h2>
+              <p class="section__desc">
+                הכל במקום אחד - תזונה, אימונים, מעקב, וכלים לשימור. אונליין,
+                מסודר, מדיד.
+              </p>
+            </div>
+          </header>
+
+          <div class="services" data-reveal>
+            <article class="service">
+              <div class="service__media" style="--svc-img: url('planing.png')">
+                <div class="service__shade" aria-hidden="true"></div>
+              </div>
+              <div class="service__body">
+                <h3 class="service__title">תפריט תזונה מותאם</h3>
+                <p class="service__text">
+                  התאמה לפי BMI/BMR והעדפות, כדי שזה יהיה אפשרי ולא “עונש”.
+                </p>
+              </div>
+            </article>
+
+            <article class="service">
+              <div
+                class="service__media"
+                style="--svc-img: url('traning hatama.png')"
+              >
+                <div class="service__shade" aria-hidden="true"></div>
+              </div>
+              <div class="service__body">
+                <h3 class="service__title">תוכנית אימונים מדוייקת</h3>
+                <p class="service__text">
+                  בית או חדר כושר - לפי זמן, ציוד, רמה ומטרה. פשוט לעקוב ולבצע.
+                </p>
+              </div>
+            </article>
+
+            <article class="service">
+              <div
+                class="service__media"
+                style="--svc-img: url('weekly follow up.png')"
+              >
+                <div class="service__shade" aria-hidden="true"></div>
+              </div>
+              <div class="service__body">
+                <h3 class="service__title">מעקב שבועי ושיפור</h3>
+                <p class="service__text">
+                  מדידה, התאמות ודיוק התהליך, כדי להתקדם ולא להיתקע.
+                </p>
+              </div>
+            </article>
+
+            <article class="service">
+              <div
+                class="service__media"
+                style="--svc-img: url('Preservation.jpg')"
+              >
+                <div class="service__shade" aria-hidden="true"></div>
+              </div>
+              <div class="service__body">
+                <h3 class="service__title">כלים לשמירה על התוצאה</h3>
+                <p class="service__text">
+                  הרגלים ומסגרת, כך שהתוצאה נשארת גם אחרי שמגיעים ליעד.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="ctaPanel" data-reveal>
+            <div class="ctaPanel__copy">
+              <h3 class="ctaPanel__title">מוכנ/ה להתחיל?</h3>
+              <p class="ctaPanel__text">
+                שלח/י הודעה בוואטסאפ ונקבע שיחת אפיון קצרה להתחלה.
+              </p>
+            </div>
+
+            <a
+              class="btn btn--primary btn--lg"
+              href="#"
+              data-wa
+              data-phone="972558813090"
+            >
+              להתחיל עכשיו <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container footer__inner">
+          <p align="center">
+            © <span id="year"></span> D.K fitness • כל הזכויות שמורות
+          </p>
+        </div>
+      </footer>
+
+      <a
+        class="waFloat"
+        href="#"
+        data-wa
+        data-phone="972558813090"
+        aria-label="וואטסאפ D.K fitness"
+      >
+        💬
+      </a>
+
+      <script src="script.js"></script>
+    </main>
+  </body>
+</html>
