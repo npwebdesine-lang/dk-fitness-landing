@@ -901,3 +901,51 @@ body {
     width: min(300px, 86%);
   }
 }
+/* ================================
+   HEADER: חזרה למצב הקודם + לוגו גדול יותר
+   שים בסוף styles.css
+================================ */
+
+/* מחזיר את ה-brand לשורה רגילה (לא מרכז אבסולוטי) */
+.brand {
+  position: static !important;
+  transform: none !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px !important;
+  text-align: right !important;
+}
+
+/* מגדיל את הלוגו */
+.brand__icon {
+  width: 82px !important;
+  height: 82px !important;
+  border-radius: 16px !important;
+}
+
+.brand__logo {
+  width: 82px !important;
+  height: 82px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6)) !important;
+}
+
+/* טיפה מגדיל את השם כדי שיראה פרופורציונלי */
+.brand__name {
+  font-size: 17px !important;
+  font-weight: 900 !important;
+}
+
+/* מובייל: קצת קטן יותר שלא ימחץ את ההדר */
+@media (max-width: 520px) {
+  .brand__icon,
+  .brand__logo {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .brand__name {
+    font-size: 15px !important;
+  }
+}
