@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
   <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>D.K fitness</title>
 
-    <!-- favicon (לשונית/כרטיסייה) -->
+    <!-- favicon -->
     <link rel="icon" href="favicon.ico" sizes="any" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="icon" type="image/png" href="dk_fitness_icon_512.png" />
@@ -27,7 +28,6 @@
     <!-- HEADER -->
     <header class="header" id="top">
       <div class="container header__inner">
-        <!-- לוגו + שם -->
         <a class="brand" href="#top" aria-label="D.K fitness">
           <span class="brand__icon" aria-hidden="true">
             <img
@@ -49,8 +49,9 @@
         </button>
 
         <nav class="nav" data-nav>
-          <a class="nav__link" href="#about">איך זה עובד</a>
-          <a class="nav__link" href="#services">מה אתם מקבלים</a>
+          <a class="nav__link" href="#about">אודות</a>
+          <a class="nav__link" href="#services">השירותים</a>
+          <a class="nav__link" href="#results">תוצאות</a>
 
           <a
             class="btn btn--primary nav__cta"
@@ -68,7 +69,7 @@
     <section class="hero" aria-label="כותרת ראשית">
       <div
         class="hero__bg"
-        style="--hero-img: url('hero background.jpg')"
+        style="--hero-img: url('hero-background.png'); --hero-pos-x: 20%"
         aria-hidden="true"
       ></div>
 
@@ -86,7 +87,7 @@
 
           <p class="hero__sub">
             מוכנ/ה לשנות את הגוף, אבל צריך מסגרת ברורה? אצלנו זה מתחיל בשיחת
-            אפיון, ממשיך להתאמה לפי <b>BMI / BMR</b>,ומתקדם עם
+            אפיון, ממשיך להתאמה לפי <b>BMR</b>, ומתקדם עם
             <b>מעקב שבועי</b> וכלים לשמירה על התוצאה.
           </p>
 
@@ -113,7 +114,7 @@
 
             <article class="highlight">
               <div class="highlight__title">תזונה מותאמת</div>
-              <div class="highlight__text">לפי BMI/BMR והעדפות</div>
+              <div class="highlight__text">לפי BMR והעדפות</div>
             </article>
 
             <article class="highlight">
@@ -138,7 +139,7 @@
             <div class="section__num">01</div>
             <div>
               <p class="section__kicker">D.K fitness</p>
-              <h2 class="section__title">איך זה עובד</h2>
+              <h2 class="section__title">אודות / איך זה עובד</h2>
               <p class="section__desc">
                 תהליך קצר, ברור ומדיד, עם התאמה אישית מלאה וקצב שמתאים לשגרה
                 שלך.
@@ -177,7 +178,7 @@
                 <li class="step">
                   <span class="step__dot" aria-hidden="true"></span>
                   <div>
-                    <strong class="step__title">התאמה לפי BMI/BMR</strong>
+                    <strong class="step__title">התאמה לפי BMR</strong>
                     <div class="step__text">
                       תפריט + אימון שמבוססים על נתונים ולא על ניחושים.
                     </div>
@@ -231,9 +232,9 @@
             <div class="section__num">02</div>
             <div>
               <p class="section__kicker">D.K fitness</p>
-              <h2 class="section__title">מה אתם מקבלים</h2>
+              <h2 class="section__title">השירותים / מה מקבלים</h2>
               <p class="section__desc">
-                הכל במקום אחד - תזונה, אימונים, מעקב, וכלים לשימור. אונליין,
+                הכל במקום אחד, תזונה, אימונים, מעקב, וכלים לשימור. אונליין,
                 מסודר, מדיד.
               </p>
             </div>
@@ -247,7 +248,7 @@
               <div class="service__body">
                 <h3 class="service__title">תפריט תזונה מותאם</h3>
                 <p class="service__text">
-                  התאמה לפי BMI/BMR והעדפות, כדי שזה יהיה אפשרי ולא “עונש”.
+                  התאמה לפי BMR והעדפות, כדי שזה יהיה אפשרי ולא “עונש”.
                 </p>
               </div>
             </article>
@@ -262,7 +263,7 @@
               <div class="service__body">
                 <h3 class="service__title">תוכנית אימונים מדוייקת</h3>
                 <p class="service__text">
-                  בית או חדר כושר - לפי זמן, ציוד, רמה ומטרה. פשוט לעקוב ולבצע.
+                  בית או חדר כושר, לפי זמן, ציוד, רמה ומטרה. פשוט לעקוב ולבצע.
                 </p>
               </div>
             </article>
@@ -298,6 +299,128 @@
             </article>
           </div>
 
+          <!-- ✅ RESULTS / TESTIMONIALS CAROUSEL -->
+          <section class="results" id="results" aria-label="תוצאות והמלצות">
+            <header class="section__head results__head" data-reveal>
+              <div class="section__num">03</div>
+              <div>
+                <p class="section__kicker">D.K fitness</p>
+                <h2 class="section__title">תוצאות והמלצות</h2>
+                <p class="section__desc">
+                  כמה דוגמאות לתהליך, לפני/אחרי + מילים אמיתיות ממי שעבר את זה.
+                </p>
+              </div>
+            </header>
+
+            <div class="carousel" data-carousel data-reveal>
+              <!-- ✅ RTL: הקודם בצד ימין + סימן נכון -->
+              <button
+                class="carousel__btn carousel__btn--prev"
+                type="button"
+                aria-label="הקודם"
+              >
+                ›
+              </button>
+
+              <div class="carousel__viewport" aria-live="polite">
+                <div class="carousel__track">
+                  <!-- SLIDE 1 -->
+                  <article class="slide">
+                    <div class="slide__media" aria-label="לפני ואחרי">
+                      <figure class="ba">
+                        <img
+                          src="first_pic_befor1.jpeg"
+                          alt="לפני - תוצאה"
+                          loading="lazy"
+                        />
+                        <figcaption class="ba__cap">לפני</figcaption>
+                      </figure>
+
+                      <figure class="ba">
+                        <img
+                          src="first_pic_after1.jpeg"
+                          alt="אחרי - תוצאה"
+                          loading="lazy"
+                        />
+                        <figcaption class="ba__cap">אחרי</figcaption>
+                      </figure>
+                    </div>
+
+                    <div class="slide__quote" aria-label="המלצה">
+                      <p class="quote__text">
+                        הכרתי את דניאל ללא שום ידע לכל מה שקשור לתחום חדרי הכושר
+                        או התזונה והוא הבן אדם הנכון שאי פעם פגשתי. בן אדם פשוט
+                        פצצה, עזר לי בקיץ האחרון להתחטב ולהגיע למשקל וגוף שהיו
+                        אצלי רק בחלומות.
+                        <br /><br />
+                        הוא ישב איתי גם בשעות המאוחרות של הלילה כדי לוודא שאני
+                        מצליח, ולא עזב אותי עד שהשגתי את המטרה שלי.
+                      </p>
+
+                      <div class="quote__meta">
+                        <span class="quote__badge">המלצה</span>
+                        <span class="quote__hint">סלייד 1/2</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  <!-- SLIDE 2 -->
+                  <article class="slide">
+                    <div class="slide__media" aria-label="לפני ואחרי">
+                      <figure class="ba">
+                        <img
+                          src="second_pic_befor2.jpeg"
+                          alt="לפני - תוצאה"
+                          loading="lazy"
+                        />
+                        <figcaption class="ba__cap">לפני</figcaption>
+                      </figure>
+
+                      <figure class="ba">
+                        <img
+                          src="second_pic_after2.jpeg"
+                          alt="אחרי - תוצאה"
+                          loading="lazy"
+                        />
+                        <figcaption class="ba__cap">אחרי</figcaption>
+                      </figure>
+                    </div>
+
+                    <div class="slide__quote" aria-label="המלצה">
+                      <p class="quote__text">
+                        רציתי להגיד תודה ענקית לדניאל על תהליך חיטוב מטורף.
+                        <br />
+                        הגעתי עם ספקות ויצאתי עם תוצאות מדהימות, גוף חטוב והרגשה
+                        טובה יותר מעצמי.
+                        <br /><br />
+                        דניאל ניחן במקצועיות, ליווי צמוד, התאמה אישית ודחיפה
+                        בדיוק מתי שצריך. מאמן שהוא קודם כל בן אדם, ממליץ מכל
+                        הלב.
+                      </p>
+
+                      <div class="quote__meta">
+                        <span class="quote__badge">המלצה</span>
+                        <span class="quote__hint">סלייד 2/2</span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <!-- ✅ RTL: הבא בצד שמאל + סימן נכון -->
+              <button
+                class="carousel__btn carousel__btn--next"
+                type="button"
+                aria-label="הבא"
+              >
+                ‹
+              </button>
+
+              <!-- ✅ כאן יהפוך לפס התקדמות -->
+              <div class="carousel__dots" aria-label="פס התקדמות"></div>
+            </div>
+          </section>
+
           <div class="ctaPanel" data-reveal>
             <div class="ctaPanel__copy">
               <h3 class="ctaPanel__title">מוכנ/ה להתחיל?</h3>
@@ -320,23 +443,9 @@
 
       <footer class="footer">
         <div class="container footer__inner">
-          <p align="center">
-            © <span id="year"></span> D.K fitness • כל הזכויות שמורות
-          </p>
+          <p>© <span id="year"></span> D.K fitness • כל הזכויות שמורות</p>
         </div>
       </footer>
-
-      <!--
-      <a
-        class="waFloat"
-        href="#"
-        data-wa
-        data-phone="972558813090"
-        aria-label="וואטסאפ D.K fitness"
-      >
-        💬
-      </a>
-     -->
 
       <script src="script.js"></script>
     </main>

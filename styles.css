@@ -1,14 +1,11 @@
-/*
-  =====================================================
-  DARK ORANGE FITNESS THEME (בהשראת הדוגמה)
-  =====================================================
-*/
-
+/* styles.css */
 :root {
   --bg: #0b0b0c;
   --bg2: #111214;
-  --panel: rgba(255, 255, 255, 0.04);
-  --panel2: rgba(255, 255, 255, 0.06);
+
+  /* Glass panels */
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel2: rgba(255, 255, 255, 0.085);
 
   --text: #f5f5f5;
   --muted: rgba(245, 245, 245, 0.68);
@@ -23,8 +20,8 @@
   --container: 1120px;
   --pad: 18px;
 
-  /* ברירת מחדל לרקע HERO (לא חובה כי אתה נותן inline) */
-  --hero-img: url("hero background.jpg");
+  --hero-img: url("hero-background.png");
+  --hero-pos-x: 72%;
 }
 
 * {
@@ -52,15 +49,12 @@ body {
   margin: 0 auto;
 }
 
-/* פס כתום עליון */
 .top-strip {
   height: 12px;
   background: linear-gradient(90deg, var(--orange), var(--orange2));
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 .header {
   position: sticky;
   top: 0;
@@ -75,7 +69,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 0; /* היה 12px - נשאר קומפקטי */
+  padding: 12px 0;
 }
 
 .brand {
@@ -86,18 +80,15 @@ body {
   color: var(--text);
 }
 
-/* ✅ לוגו גדול ובולט בלי מסגרת כתומה */
 .brand__icon {
   width: 64px;
   height: 64px;
   display: grid;
   place-items: center;
-
+  border-radius: 14px;
   background: transparent;
-  border: none;
+  border: 0;
   padding: 0;
-  overflow: visible;
-  border-radius: 0;
 }
 
 .brand__logo {
@@ -105,14 +96,13 @@ body {
   height: 64px;
   display: block;
   object-fit: contain;
-
-  /* בולטות על רקע כהה */
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
 }
 
 .brand__name {
   font-weight: 900;
   letter-spacing: 0.4px;
+  font-size: 16px;
 }
 
 .navToggle {
@@ -143,10 +133,11 @@ body {
 .nav__link:hover {
   background: rgba(255, 255, 255, 0.06);
 }
+.nav__cta {
+  white-space: nowrap;
+}
 
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -164,7 +155,6 @@ body {
 .btn:active {
   transform: translateY(1px);
 }
-
 .btn--lg {
   padding: 12px 16px;
 }
@@ -190,13 +180,7 @@ body {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.nav__cta {
-  white-space: nowrap;
-}
-
-/* =========================
-   HERO
-========================= */
+/* HERO */
 .hero {
   position: relative;
   min-height: 78vh;
@@ -209,33 +193,46 @@ body {
 .hero__bg {
   position: absolute;
   inset: 0;
+  isolation: isolate;
+  background-color: #000;
   background-image: var(--hero-img);
-  background-size: cover;
-  background-position: center;
-  filter: saturate(1.06) contrast(1.06);
-  transform: scale(1.03);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: var(--hero-pos-x) center;
   z-index: -3;
 }
 
-/* שכבת כהות לקריאות */
+.hero__bg::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background-image: var(--hero-img);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: var(--hero-pos-x) center;
+  filter: blur(18px) saturate(1.12) contrast(1.05);
+  opacity: 0.32;
+  transform: scale(1.06);
+  z-index: -1;
+}
+
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-      900px 520px at 55% 18%,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.8)
+  background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.7) 55%,
+      rgba(0, 0, 0, 0.92) 100%
     ),
     radial-gradient(
       1200px 800px at 50% 50%,
-      rgba(0, 0, 0, 0.18),
-      rgba(0, 0, 0, 0.86)
-    ),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.88));
+      rgba(0, 0, 0, 0.16),
+      rgba(0, 0, 0, 0.88)
+    );
   z-index: -2;
 }
 
-/* קווי X דקים */
 .hero__gridlines {
   position: absolute;
   inset: 0;
@@ -309,7 +306,6 @@ body {
   gap: 10px;
 }
 
-/* Highlights */
 .highlights {
   margin-top: 18px;
   display: grid;
@@ -335,9 +331,7 @@ body {
   color: rgba(245, 245, 245, 0.72);
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* SECTIONS */
 .section {
   padding: 56px 0;
 }
@@ -389,9 +383,7 @@ body {
   max-width: 70ch;
 }
 
-/* =========================
-   ABOUT
-========================= */
+/* ABOUT */
 .about {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
@@ -479,9 +471,7 @@ body {
   margin-top: 14px;
 }
 
-/* =========================
-   SERVICES
-========================= */
+/* SERVICES */
 .services {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -537,7 +527,6 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.05),
@@ -557,20 +546,11 @@ body {
   color: rgba(245, 245, 245, 0.74);
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 .footer {
   padding: 26px 0 34px;
 }
-
 .footer__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 16px;
   color: rgba(245, 245, 245, 0.62);
@@ -578,45 +558,256 @@ body {
   text-align: center;
 }
 
-.footer__link {
-  color: rgba(245, 245, 245, 0.85);
-  text-decoration: none;
-  border-bottom: 1px dashed rgba(245, 245, 245, 0.35);
-}
-
-.footer__link:hover {
-  border-bottom-color: rgba(245, 245, 245, 0.65);
-}
-
-/* WhatsApp floating */
-/*.waFloat {
-  position: fixed;
-  left: 16px;
-  bottom: 16px;
-  width: 54px;
-  height: 54px;
-  border-radius: 18px;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  background: linear-gradient(135deg, #25d366, #00c2a8);
-  color: #06120c;
-  box-shadow: 0 22px 65px rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  font-size: 22px;
-  z-index: 60;
-}*/
-
 /* REVEAL */
 [data-reveal] {
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 420ms ease, transform 420ms ease;
 }
-
 .revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* =========================
+   ✅ RESULTS / CAROUSEL (Glass + Progress Bar)
+========================= */
+.results {
+  margin-top: 26px;
+}
+
+.carousel {
+  position: relative;
+  border-radius: var(--radius);
+  border: 2px solid rgba(255, 77, 46, 0.72);
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+
+  /* ✅ JS יעדכן את זה */
+  --progress: 0;
+}
+
+/* viewport LTR לתזוזה תקינה */
+.carousel__viewport {
+  overflow: hidden;
+  direction: ltr;
+  background: transparent;
+}
+
+.carousel__track {
+  display: flex;
+  transition: transform 420ms ease;
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 12px;
+  padding: 14px;
+  align-items: stretch;
+  direction: rtl;
+  background: transparent;
+}
+
+/* Images grid */
+.slide__media {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* image card */
+.ba {
+  position: relative;
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 77, 46, 0.75);
+  background: transparent;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+}
+
+.ba::before,
+.ba::after {
+  content: none !important;
+  display: none !important;
+}
+
+.ba img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  filter: none;
+  opacity: 1;
+}
+
+.ba__cap {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: 900;
+  font-size: 12px;
+  color: rgba(245, 245, 245, 0.95);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 6px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+/* Quote */
+.slide__quote {
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--panel2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+  padding: 18px;
+  padding-bottom: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.quote__text {
+  margin: 0;
+  max-width: 52ch;
+  color: rgba(245, 245, 245, 0.86);
+  line-height: 1.75;
+  font-size: 14px;
+}
+
+.quote__meta {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.quote__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 900;
+  font-size: 12px;
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  color: #0b0b0c;
+}
+
+.quote__hint {
+  color: rgba(245, 245, 245, 0.6);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* ✅ Buttons: RTL (הקודם מימין, הבא משמאל) */
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+
+  border-radius: 999px;
+  border: 2px solid rgba(255, 77, 46, 0.35);
+  background: rgba(10, 10, 11, 0.35);
+  backdrop-filter: blur(10px);
+
+  color: rgba(245, 245, 245, 0.95);
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+
+  z-index: 6;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.25);
+}
+
+.carousel__btn:hover {
+  background: rgba(10, 10, 11, 0.5);
+  border-color: rgba(255, 77, 46, 0.55);
+}
+
+.carousel__btn--prev {
+  right: 14px;
+  left: auto;
+}
+
+.carousel__btn--next {
+  left: 14px;
+  right: auto;
+}
+
+/* ✅ Progress Bar במקום נקודות */
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  padding: 12px 12px 14px;
+  background: transparent;
+}
+
+.carousel__progressTrack {
+  position: relative;
+  width: min(340px, 70%);
+  height: 10px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.carousel__progressFill {
+  position: absolute;
+  inset: 0;
+  width: calc(var(--progress) * 100%);
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  border-radius: 999px;
+}
+
+.carousel__progressThumb {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--progress) * 100%);
+  transform: translate(-50%, -50%);
+
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+
+  background: rgba(245, 245, 245, 0.95);
+  border: 3px solid rgba(255, 77, 46, 0.85);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+}
+
+.carousel__progressTrack:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 77, 46, 0.18);
+  border-color: rgba(255, 77, 46, 0.55);
 }
 
 /* RESPONSIVE */
@@ -627,7 +818,7 @@ body {
 
   .nav {
     position: absolute;
-    top: 64px;
+    top: 74px;
     left: 12px;
     right: 12px;
     display: none;
@@ -643,36 +834,50 @@ body {
   .nav.is-open {
     display: flex;
   }
-
   .nav__cta {
     width: 100%;
-  }
-
-  /* ✅ מובייל: הלוגו קצת קטן כדי שלא יתפוס מקום */
-  .brand__icon {
-    width: 52px;
-    height: 52px;
-  }
-  .brand__logo {
-    width: 52px;
-    height: 52px;
   }
 
   .highlights {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .about {
     grid-template-columns: 1fr;
   }
-
   .services {
     grid-template-columns: 1fr;
   }
-
   .ctaPanel {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .brand__icon {
+    width: 56px;
+    height: 56px;
+  }
+  .brand__logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .slide {
+    grid-template-columns: 1fr;
+  }
+
+  .ba img {
+    height: 260px;
+  }
+
+  .carousel__btn--prev {
+    right: 10px;
+  }
+  .carousel__btn--next {
+    left: 10px;
+  }
+
+  .carousel__progressTrack {
+    width: min(320px, 80%);
   }
 }
 
@@ -680,8 +885,19 @@ body {
   .section__num {
     font-size: 48px;
   }
-
   .highlights {
     grid-template-columns: 1fr;
+  }
+
+  .slide__media {
+    grid-template-columns: 1fr;
+  }
+
+  .ba img {
+    height: 240px;
+  }
+
+  .carousel__progressTrack {
+    width: min(300px, 86%);
   }
 }
