@@ -1,4 +1,4 @@
-// script.js
+// script.js (מוכן להדבקה)
 
 // שנה בפוטר
 (() => {
@@ -66,6 +66,9 @@
   items.forEach((el) => io.observe(el));
 })();
 
+// ✅ משתנה גלובלי קטן כדי למנוע "קליק" אחרי swipe
+window.__dkLastSwipeAt = 0;
+
 // Carousel (RTL-safe + LOOP + Progress Bar + SWIPE)
 (() => {
   const carousels = document.querySelectorAll("[data-carousel]");
@@ -85,7 +88,7 @@
     let index = 0;
     const max = Math.max(0, slides.length - 1);
 
-    // ✅ Progress Bar UI
+    // Progress Bar UI
     dotsWrap.innerHTML = `
       <div class="carousel__progressTrack" tabindex="0" role="button" aria-label="פס התקדמות (לחיצה לקפיצה לסלייד)">
         <div class="carousel__progressFill" aria-hidden="true"></div>
@@ -96,11 +99,13 @@
 
     const update = () => {
       track.style.transform = `translateX(-${index * 100}%)`;
-      const ratio = max === 0 ? 0 : index / max; // 0..1
+      const ratio = max === 0 ? 0 : index / max;
       carousel.style.setProperty("--progress", String(clamp01(ratio)));
+
+      // עדכון טקסט "סלייד X/Y" אם תרצה בהמשך - כרגע לא מוסיפים
     };
 
-    // ✅ LOOP
+    // LOOP
     const goTo = (i) => {
       const n = slides.length;
       index = ((i % n) + n) % n;
@@ -110,7 +115,7 @@
     btnPrev?.addEventListener("click", () => goTo(index - 1));
     btnNext?.addEventListener("click", () => goTo(index + 1));
 
-    // ✅ Click on progress bar -> jump to nearest slide
+    // Click on progress bar -> jump
     progressTrack?.addEventListener("click", (e) => {
       const rect = progressTrack.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -119,7 +124,7 @@
       goTo(target);
     });
 
-    // ✅ Keyboard on progress bar
+    // Keyboard on progress bar
     progressTrack?.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") goTo(index + 1); // RTL feel
       if (e.key === "ArrowRight") goTo(index - 1);
@@ -127,22 +132,20 @@
       if (e.key === "End") goTo(slides.length - 1);
     });
 
-    // ✅ Keyboard on carousel container
+    // Keyboard on carousel
     carousel.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") goTo(index + 1); // RTL feel
+      if (e.key === "ArrowLeft") goTo(index + 1);
       if (e.key === "ArrowRight") goTo(index - 1);
     });
 
-    // =========================
-    // ✅ SWIPE (Mobile)
-    // =========================
+    // SWIPE (Mobile)
     let startX = 0;
     let startY = 0;
     let isSwiping = false;
+    let startTime = 0;
 
     const SWIPE_THRESHOLD = 40; // px
     const SWIPE_MAX_TIME = 800; // ms
-    let startTime = 0;
 
     viewport.addEventListener(
       "touchstart",
@@ -165,10 +168,9 @@
         const dx = t.clientX - startX;
         const dy = t.clientY - startY;
 
-        // אם זה יותר אופקי מאנכי — ננעל על swipe ומונעים גלילה צדדית
         if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
           isSwiping = true;
-          e.preventDefault(); // חשוב כדי שלא "יזרוק" את הדף לצדדים
+          e.preventDefault();
         }
       },
       { passive: false }
@@ -176,22 +178,10 @@
 
     viewport.addEventListener(
       "touchend",
-      () => {
+      (e) => {
         const dt = Date.now() - startTime;
         if (!isSwiping || dt > SWIPE_MAX_TIME) return;
 
-        // אין לנו touch כאן, אז נשמור את הדלתא מה-move האחרון?
-        // פתרון: נחשב שוב לפי startX מול touchend? אין נתון.
-        // לכן נשתמש ב-ChangedTouches כשהוא קיים
-      },
-      { passive: true }
-    );
-
-    // TouchEnd עם changedTouches כדי לדעת לאן זה נגמר
-    viewport.addEventListener(
-      "touchend",
-      (e) => {
-        if (!isSwiping) return;
         const ct = e.changedTouches && e.changedTouches[0];
         if (!ct) return;
 
@@ -200,10 +190,13 @@
         const dx = endX - startX;
         const dy = endY - startY;
 
-        if (Math.abs(dx) < Math.abs(dy)) return; // בעצם גלילה אנכית
+        if (Math.abs(dx) < Math.abs(dy)) return;
         if (Math.abs(dx) < SWIPE_THRESHOLD) return;
 
-        // Swipe שמאלה -> הבא | Swipe ימינה -> הקודם
+        // מסמנים שהיה swipe כדי שלא יפתח lightbox בגלל click "אחרי"
+        window.__dkLastSwipeAt = Date.now();
+
+        // swipe שמאלה -> הבא, ימינה -> הקודם
         if (dx < 0) goTo(index + 1);
         else goTo(index - 1);
 
@@ -214,5 +207,116 @@
 
     // init
     goTo(0);
+  });
+})();
+
+// ================================
+// Lightbox (להמחשה בלבד): Zoom-in + Next/Prev + Keyboard
+// ================================
+(() => {
+  const lb = document.getElementById("lightbox");
+  if (!lb) return;
+
+  const imgEl = lb.querySelector(".lightbox__img");
+  const closeBtn = lb.querySelector(".lightbox__close");
+  const prevBtn = lb.querySelector(".lightbox__nav--prev");
+  const nextBtn = lb.querySelector(".lightbox__nav--next");
+
+  const getGallery = () =>
+    Array.from(document.querySelectorAll("#results .ba img")).filter(
+      (i) => i && i.getAttribute("src")
+    );
+
+  let gallery = getGallery();
+  let current = 0;
+
+  const refreshGallery = () => {
+    gallery = getGallery();
+  };
+
+  const setNavVisibility = () => {
+    const show = gallery.length > 1;
+    if (prevBtn) prevBtn.style.display = show ? "" : "none";
+    if (nextBtn) nextBtn.style.display = show ? "" : "none";
+  };
+
+  const showAt = (idx) => {
+    if (!gallery.length) return;
+    const n = gallery.length;
+    current = ((idx % n) + n) % n;
+
+    const src = gallery[current].getAttribute("src");
+    const alt = gallery[current].getAttribute("alt") || "תמונה מוגדלת";
+
+    // להפעיל אנימציה גם במעבר
+    imgEl.style.animation = "none";
+    imgEl.offsetHeight;
+    imgEl.style.animation = "";
+
+    imgEl.src = src;
+    imgEl.alt = alt;
+  };
+
+  const openByIndex = (idx) => {
+    refreshGallery();
+    setNavVisibility();
+    lb.classList.add("is-open");
+    lb.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    showAt(idx);
+  };
+
+  const close = () => {
+    lb.classList.remove("is-open");
+    lb.setAttribute("aria-hidden", "true");
+    imgEl.src = "";
+    document.body.style.overflow = "";
+  };
+
+  const next = () => showAt(current + 1);
+  const prev = () => showAt(current - 1);
+
+  // קליק על תמונה -> פותח (רק אם לא היה swipe ממש לפני רגע)
+  document.addEventListener("click", (e) => {
+    if (Date.now() - window.__dkLastSwipeAt < 300) return;
+
+    const target = e.target;
+    if (!(target instanceof HTMLElement)) return;
+
+    const clickedImg = target.closest("#results .ba img");
+    if (!clickedImg) return;
+
+    refreshGallery();
+    const idx = gallery.findIndex((x) => x === clickedImg);
+    openByIndex(Math.max(0, idx));
+  });
+
+  // סגירה
+  closeBtn?.addEventListener("click", close);
+
+  // לחיצה על הרקע סוגרת
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb) close();
+  });
+
+  // ניווט
+  prevBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    prev();
+  });
+
+  nextBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    next();
+  });
+
+  // מקלדת
+  document.addEventListener("keydown", (e) => {
+    if (!lb.classList.contains("is-open")) return;
+
+    if (e.key === "Escape") close();
+    // RTL feel: שמאלה -> הבא, ימינה -> הקודם
+    if (e.key === "ArrowLeft") next();
+    if (e.key === "ArrowRight") prev();
   });
 })();

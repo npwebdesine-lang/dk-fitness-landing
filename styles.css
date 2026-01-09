@@ -1,4 +1,4 @@
-/* styles.css */
+/* styles.css (מוכן להדבקה) */
 :root {
   --bg: #0b0b0c;
   --bg2: #111214;
@@ -80,29 +80,41 @@ body {
   color: var(--text);
 }
 
+/* ✅ לוגו גדול יותר (שומר על “מה שהיה”) */
 .brand__icon {
-  width: 64px;
-  height: 64px;
+  width: 82px;
+  height: 82px;
   display: grid;
   place-items: center;
-  border-radius: 14px;
+  border-radius: 16px;
   background: transparent;
   border: 0;
   padding: 0;
 }
 
 .brand__logo {
-  width: 64px;
-  height: 64px;
+  width: 82px;
+  height: 82px;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6));
 }
 
 .brand__name {
   font-weight: 900;
   letter-spacing: 0.4px;
-  font-size: 16px;
+  font-size: 17px;
+}
+
+@media (max-width: 520px) {
+  .brand__icon,
+  .brand__logo {
+    width: 64px;
+    height: 64px;
+  }
+  .brand__name {
+    font-size: 15px;
+  }
 }
 
 .navToggle {
@@ -585,7 +597,7 @@ body {
   box-shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 
-  /* ✅ JS יעדכן את זה */
+  /* JS יעדכן */
   --progress: 0;
 }
 
@@ -614,14 +626,12 @@ body {
   background: transparent;
 }
 
-/* Images grid */
 .slide__media {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
-/* image card */
 .ba {
   position: relative;
   margin: 0;
@@ -645,6 +655,9 @@ body {
   display: block;
   filter: none;
   opacity: 1;
+
+  /* רמז ללחיצה */
+  cursor: zoom-in;
 }
 
 .ba__cap {
@@ -661,7 +674,6 @@ body {
   backdrop-filter: blur(6px);
 }
 
-/* Quote */
 .slide__quote {
   position: relative;
   border-radius: 18px;
@@ -716,7 +728,7 @@ body {
   font-weight: 800;
 }
 
-/* ✅ Buttons: RTL (הקודם מימין, הבא משמאל) */
+/* Buttons RTL: הקודם מימין, הבא משמאל */
 .carousel__btn {
   position: absolute;
   top: 50%;
@@ -758,7 +770,7 @@ body {
   right: auto;
 }
 
-/* ✅ Progress Bar במקום נקודות */
+/* Progress Bar */
 .carousel__dots {
   display: flex;
   justify-content: center;
@@ -852,15 +864,6 @@ body {
     align-items: flex-start;
   }
 
-  .brand__icon {
-    width: 56px;
-    height: 56px;
-  }
-  .brand__logo {
-    width: 56px;
-    height: 56px;
-  }
-
   .slide {
     grid-template-columns: 1fr;
   }
@@ -901,51 +904,127 @@ body {
     width: min(300px, 86%);
   }
 }
+
 /* ================================
-   HEADER: חזרה למצב הקודם + לוגו גדול יותר
-   שים בסוף styles.css
+   Lightbox (להמחשה בלבד) + אנימציה + ניווט
 ================================ */
-
-/* מחזיר את ה-brand לשורה רגילה (לא מרכז אבסולוטי) */
-.brand {
-  position: static !important;
-  transform: none !important;
-  display: inline-flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 12px !important;
-  text-align: right !important;
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(8px);
 }
 
-/* מגדיל את הלוגו */
-.brand__icon {
-  width: 82px !important;
-  height: 82px !important;
-  border-radius: 16px !important;
+.lightbox.is-open {
+  display: grid;
 }
 
-.brand__logo {
-  width: 82px !important;
-  height: 82px !important;
-  object-fit: contain !important;
-  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6)) !important;
+.lightbox__stage {
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
 }
 
-/* טיפה מגדיל את השם כדי שיראה פרופורציונלי */
-.brand__name {
-  font-size: 17px !important;
-  font-weight: 900 !important;
+.lightbox__img {
+  max-width: min(1100px, 96vw);
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 77, 46, 0.75);
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.6);
+  cursor: default;
+
+  transform: scale(0.92);
+  opacity: 0;
 }
 
-/* מובייל: קצת קטן יותר שלא ימחץ את ההדר */
-@media (max-width: 520px) {
-  .brand__icon,
-  .brand__logo {
-    width: 64px !important;
-    height: 64px !important;
+@keyframes lbZoomIn {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
   }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
-  .brand__name {
-    font-size: 15px !important;
+.lightbox.is-open .lightbox__img {
+  animation: lbZoomIn 220ms ease-out both;
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(245, 245, 245, 0.95);
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.lightbox__nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+
+  border-radius: 999px;
+  border: 2px solid rgba(255, 77, 46, 0.35);
+  background: rgba(10, 10, 11, 0.35);
+  backdrop-filter: blur(10px);
+
+  color: rgba(245, 245, 245, 0.95);
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+
+  z-index: 10000;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.25);
+}
+
+.lightbox__nav:hover {
+  background: rgba(10, 10, 11, 0.55);
+  border-color: rgba(255, 77, 46, 0.6);
+}
+
+.lightbox__nav--prev {
+  right: 16px; /* הקודם מימין */
+  left: auto;
+}
+
+.lightbox__nav--next {
+  left: 16px; /* הבא משמאל */
+  right: auto;
+}
+
+@media (max-width: 520px) {
+  .lightbox__nav {
+    width: 46px;
+    height: 46px;
+    font-size: 30px;
   }
 }
