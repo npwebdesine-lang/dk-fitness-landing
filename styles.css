@@ -1028,3 +1028,24 @@ body {
     font-size: 30px;
   }
 }
+/* ================================
+   ✅ Mobile only: להציג את כל תמונת לפני/אחרי (ללא חיתוך)
+   הדבק בסוף styles.css
+================================ */
+
+@media (max-width: 980px) {
+  .ba {
+    background: rgba(0, 0, 0, 0.35); /* רקע ללטרבוקס כשיש contain */
+  }
+
+  .ba img {
+    height: auto !important; /* מבטל את ה-260/240/320 */
+    max-height: 60vh !important; /* שלא יתפוצץ בגובה */
+    object-fit: contain !important; /* מציג את כל התמונה */
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .slide {
+    align-items: start;
+  }
+}
