@@ -320,3 +320,41 @@ window.__dkLastSwipeAt = 0;
     if (e.key === "ArrowRight") prev();
   });
 })();
+// ✅ NAV Toggle (Mobile drawer)
+(() => {
+  const btn = document.querySelector(".navToggle");
+  const nav = document.querySelector("[data-nav]");
+  if (!btn || !nav) return;
+
+  const close = () => {
+    document.body.classList.remove("nav-open");
+    btn.setAttribute("aria-expanded", "false");
+  };
+
+  const open = () => {
+    document.body.classList.add("nav-open");
+    btn.setAttribute("aria-expanded", "true");
+  };
+
+  btn.addEventListener("click", () => {
+    const isOpen = document.body.classList.contains("nav-open");
+    isOpen ? close() : open();
+  });
+
+  // סגירה בלחיצה על לינק בתפריט
+  nav.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a) close();
+  });
+
+  // סגירה בלחיצה מחוץ לתפריט
+  document.addEventListener("click", (e) => {
+    const clickedInside = nav.contains(e.target) || btn.contains(e.target);
+    if (!clickedInside) close();
+  });
+
+  // סגירה ב-Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+})();
