@@ -1458,3 +1458,14 @@ img {
     display: none !important;
   }
 }
+
+@media (max-width: 920px) {
+  .onme__chip {
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+  }
+  .onme__chip {
+    text-align: center;
+  }
+}
