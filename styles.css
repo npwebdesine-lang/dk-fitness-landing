@@ -80,7 +80,7 @@ body {
   color: var(--text);
 }
 
-/* ✅ לוגו גדול יותר (שומר על “מה שהיה”) */
+/* ✅ לוגו גדול יותר */
 .brand__icon {
   width: 82px;
   height: 82px;
@@ -530,6 +530,29 @@ body {
   font-size: 14px;
 }
 
+/* ✅ SERVICES CTA */
+.services__cta {
+  margin-top: 14px;
+  border-radius: var(--radius);
+  padding: 18px;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
+}
+
+.services__ctaHint {
+  margin: 0;
+  color: rgba(245, 245, 245, 0.68);
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
 /* CTA Panel */
 .ctaPanel {
   margin-top: 14px;
@@ -582,7 +605,7 @@ body {
 }
 
 /* =========================
-   ✅ RESULTS / CAROUSEL (Glass + Progress Bar)
+   ✅ RESULTS / CAROUSEL
 ========================= */
 .results {
   margin-top: 26px;
@@ -597,7 +620,6 @@ body {
   box-shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 
-  /* JS יעדכן */
   --progress: 0;
 }
 
@@ -655,8 +677,6 @@ body {
   display: block;
   filter: none;
   opacity: 1;
-
-  /* רמז ללחיצה */
   cursor: zoom-in;
 }
 
@@ -681,9 +701,9 @@ body {
   background: var(--panel2);
   backdrop-filter: blur(10px);
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
-  padding: 18px;
-  padding-bottom: 58px;
 
+  padding: 18px;
+  padding-bottom: 58px; /* בדסקטופ יש meta בפנים */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -703,7 +723,6 @@ body {
   left: 14px;
   right: 14px;
   bottom: 14px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -728,7 +747,7 @@ body {
   font-weight: 800;
 }
 
-/* Buttons RTL: הקודם מימין, הבא משמאל */
+/* Buttons RTL */
 .carousel__btn {
   position: absolute;
   top: 50%;
@@ -743,7 +762,6 @@ body {
 
   color: rgba(245, 245, 245, 0.95);
   cursor: pointer;
-
   display: grid;
   place-items: center;
 
@@ -822,92 +840,125 @@ body {
   border-color: rgba(255, 77, 46, 0.55);
 }
 
-/* RESPONSIVE */
-@media (max-width: 980px) {
-  .navToggle {
-    display: inline-flex;
-  }
-
-  .nav {
-    position: absolute;
-    top: 74px;
-    left: 12px;
-    right: 12px;
-    display: none;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    padding: 12px;
-    border-radius: 16px;
-    background: rgba(10, 10, 11, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .nav.is-open {
-    display: flex;
-  }
-  .nav__cta {
-    width: 100%;
-  }
-
-  .highlights {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .about {
-    grid-template-columns: 1fr;
-  }
-  .services {
-    grid-template-columns: 1fr;
-  }
-  .ctaPanel {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .slide {
-    grid-template-columns: 1fr;
-  }
-
-  .ba img {
-    height: 260px;
-  }
-
-  .carousel__btn--prev {
-    right: 10px;
-  }
-  .carousel__btn--next {
-    left: 10px;
-  }
-
-  .carousel__progressTrack {
-    width: min(320px, 80%);
-  }
+/* =========================
+   ✅ SECTION 04 — ON ME
+========================= */
+.onme {
+  padding: 56px 0;
 }
 
-@media (max-width: 520px) {
-  .section__num {
-    font-size: 48px;
-  }
-  .highlights {
-    grid-template-columns: 1fr;
-  }
-
-  .slide__media {
-    grid-template-columns: 1fr;
-  }
-
-  .ba img {
-    height: 240px;
-  }
-
-  .carousel__progressTrack {
-    width: min(300px, 86%);
-  }
+.onme__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 14px;
+  align-items: stretch;
 }
 
-/* ================================
-   Lightbox (להמחשה בלבד) + אנימציה + ניווט
-================================ */
+.onme__media {
+  position: relative;
+  border-radius: var(--radius);
+  border: 2px solid rgba(255, 77, 46, 0.72);
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+}
+
+/* ✅ ללא קרופ */
+.onme__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.onme__mediaBadge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  color: rgba(245, 245, 245, 0.95);
+  background: rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+}
+
+.onme__card {
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--panel2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
+  padding: 18px;
+}
+
+.onme__headline {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.onme__text {
+  margin: 0 0 10px;
+  color: rgba(245, 245, 245, 0.78);
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+/* chips */
+.onme__chips {
+  margin: 12px 0 14px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.onme__chip {
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(245, 245, 245, 0.92);
+  background: rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(255, 77, 46, 0.28);
+}
+
+.onme__note {
+  margin-top: 14px;
+  border-radius: 14px;
+  padding: 12px 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(245, 245, 245, 0.72);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.onme__noteDot {
+  width: 10px;
+  height: 10px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  box-shadow: 0 0 0 6px rgba(255, 77, 46, 0.12);
+  flex: 0 0 auto;
+}
+
+/* =========================
+   ✅ LIGHTBOX
+========================= */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -939,7 +990,6 @@ body {
   border: 2px solid rgba(255, 77, 46, 0.75);
   box-shadow: 0 24px 90px rgba(0, 0, 0, 0.6);
   cursor: default;
-
   transform: scale(0.92);
   opacity: 0;
 }
@@ -1012,173 +1062,78 @@ body {
 }
 
 .lightbox__nav--prev {
-  right: 16px; /* הקודם מימין */
+  right: 16px;
   left: auto;
 }
 
 .lightbox__nav--next {
-  left: 16px; /* הבא משמאל */
+  left: 16px;
   right: auto;
 }
 
-@media (max-width: 520px) {
-  .lightbox__nav {
-    width: 46px;
-    height: 46px;
-    font-size: 30px;
-  }
-}
-/* ================================
-   ✅ Mobile only: להציג את כל תמונת לפני/אחרי (ללא חיתוך)
-   הדבק בסוף styles.css
-================================ */
-
+/* =========================
+   ✅ RESPONSIVE
+========================= */
 @media (max-width: 980px) {
-  .ba {
-    background: rgba(0, 0, 0, 0.35); /* רקע ללטרבוקס כשיש contain */
+  .navToggle {
+    display: inline-flex;
   }
 
-  .ba img {
-    height: auto !important; /* מבטל את ה-260/240/320 */
-    max-height: 60vh !important; /* שלא יתפוצץ בגובה */
-    object-fit: contain !important; /* מציג את כל התמונה */
-    background: rgba(0, 0, 0, 0.35);
+  .nav {
+    position: absolute;
+    top: 74px;
+    left: 12px;
+    right: 12px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(10, 10, 11, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+  .nav__cta {
+    width: 100%;
+  }
+
+  .highlights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .services {
+    grid-template-columns: 1fr;
+  }
+  .ctaPanel {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .slide {
-    align-items: start;
+    grid-template-columns: 1fr;
   }
-}
-/* =========================
-   ✅ SECTION 04 — ON ME
-========================= */
 
-.onme {
-  padding: 56px 0;
-}
+  .ba img {
+    height: 260px;
+  }
 
-.onme__grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 14px;
-  align-items: stretch;
-}
+  .carousel__btn--prev {
+    right: 10px;
+  }
+  .carousel__btn--next {
+    left: 10px;
+  }
 
-/* media */
-.onme__media {
-  position: relative;
-  border-radius: var(--radius);
-  border: 2px solid rgba(255, 77, 46, 0.72);
-  background: rgba(0, 0, 0, 0.28);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
-  overflow: hidden;
-  min-height: 360px;
-  display: grid;
-  place-items: center;
-}
+  .carousel__progressTrack {
+    width: min(320px, 80%);
+  }
 
-/* ✅ ללא קרופ */
-.onme__img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* מציג את כל התמונה */
-  display: block;
-  background: rgba(0, 0, 0, 0.28); /* לטרבוקס עדין אם יש "שוליים" */
-}
-
-.onme__mediaBadge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-weight: 900;
-  font-size: 12px;
-  color: rgba(245, 245, 245, 0.95);
-  background: rgba(0, 0, 0, 0.38);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(8px);
-}
-
-/* card */
-.onme__card {
-  border-radius: var(--radius);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: var(--panel2);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
-  padding: 18px;
-}
-
-.onme__headline {
-  margin: 0 0 10px;
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: 0.2px;
-}
-
-.onme__text {
-  margin: 0 0 10px;
-  color: rgba(245, 245, 245, 0.78);
-  line-height: 1.8;
-  font-size: 14px;
-}
-
-/* chips */
-.onme__chips {
-  margin: 12px 0 14px;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.onme__chip {
-  padding: 8px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 900;
-  color: rgba(245, 245, 245, 0.92);
-  background: rgba(0, 0, 0, 0.26);
-  border: 1px solid rgba(255, 77, 46, 0.28);
-}
-
-/* actions */
-.onme__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-/* note */
-.onme__note {
-  margin-top: 14px;
-  border-radius: 14px;
-  padding: 12px 12px;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  background: rgba(0, 0, 0, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(245, 245, 245, 0.72);
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.onme__noteDot {
-  width: 10px;
-  height: 10px;
-  margin-top: 6px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--orange), var(--orange2));
-  box-shadow: 0 0 0 6px rgba(255, 77, 46, 0.12);
-  flex: 0 0 auto;
-}
-
-/* responsive */
-@media (max-width: 980px) {
   .onme__grid {
     grid-template-columns: 1fr;
   }
@@ -1190,282 +1145,89 @@ body {
   .onme__headline {
     font-size: 18px;
   }
-}
-/* =========================
-   ✅ SERVICES CTA
-========================= */
-.services__cta {
-  margin-top: 14px;
-  border-radius: var(--radius);
-  padding: 18px;
-  display: grid;
-  gap: 10px;
-  justify-items: center;
-  text-align: center;
 
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
-}
-
-.services__ctaHint {
-  margin: 0;
-  color: rgba(245, 245, 245, 0.68);
-  font-size: 13px;
-  line-height: 1.6;
-  max-width: 60ch;
-}
-
-@media (max-width: 980px) {
   .services__cta {
     padding: 16px;
   }
 }
-/* =========================================================
-   ✅ MOBILE RESPONSIVE PATCH (paste at END of styles.css)
-   ========================================================= */
 
-/* בסיס שמונע גלילה אופקית וחותך באגים נפוצים */
-html,
-body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* קונטיינר: יותר מרווח במובייל */
-.container {
-  width: min(1100px, 100%);
-  margin: 0 auto;
-  padding-inline: 18px;
-}
-
-/* -----------------------------
-   HEADER / NAV (Mobile)
------------------------------- */
-.navToggle {
-  display: none; /* בדסקטופ מסתתר */
-}
-
-@media (max-width: 920px) {
-  .header__inner {
-    gap: 12px;
+@media (max-width: 520px) {
+  .section__num {
+    font-size: 48px;
   }
-
-  .navToggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(10, 10, 10, 0.35);
-    color: #fff;
-    cursor: pointer;
-  }
-
-  /* הופך את הניווט למגירה */
-  .nav {
-    position: fixed;
-    inset: 70px 14px auto 14px;
-    z-index: 999;
-    display: grid;
-    gap: 10px;
-    padding: 14px;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(12, 12, 12, 0.78);
-    backdrop-filter: blur(10px);
-    transform: translateY(-12px);
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.2s ease;
-  }
-
-  body.nav-open .nav {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .nav__link,
-  .nav__cta {
-    width: 100%;
-  }
-}
-
-/* -----------------------------
-   HERO (Mobile)
------------------------------- */
-@media (max-width: 920px) {
-  .hero__big {
-    display: none; /* בד״כ ענק מדי במובייל */
-  }
-
-  .hero__title {
-    line-height: 1.15;
-  }
-
-  .hero__actions {
-    display: grid;
-    gap: 10px;
-  }
-
-  .btn--lg {
-    width: 100%;
-    justify-content: center;
-  }
-
   .highlights {
-    display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
-  }
-}
-
-/* -----------------------------
-   ABOUT / SERVICES: לשבור לגריד של טור אחד
------------------------------- */
-@media (max-width: 920px) {
-  .about {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
   }
 
-  .services {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-  }
-
-  .services__cta {
-    text-align: center;
-  }
-}
-
-/* -----------------------------
-   ✅ RESULTS Carousel (Mobile fixes)
-   המטרה: לפני/אחרי לא נחתכים + פריסה נוחה במובייל
------------------------------- */
-@media (max-width: 920px) {
-  /* הסלייד הופך לטור אחד (תמונות מעל, טקסט מתחת) */
-  .slide {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-  }
-
-  /* לפני/אחרי הופך לטור אחד (מעל-מתחת) */
   .slide__media {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
+    grid-template-columns: 1fr;
   }
 
-  /* כל קופסת תמונה: נותנים “חלון” נח, בלי חיתוך */
-  .ba {
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 10px; /* נותן “מסגרת” כדי שתמונה לא תידבק לקצוות */
-  }
-
-  /* ✅ זה העיקר: במובייל לא חותכים — מציגים את כולה */
   .ba img {
-    width: 100%;
-    height: auto;
-    max-height: 70vh; /* שלא יתפוס מסך שלם */
-    object-fit: contain; /* ✅ מציג את כל התמונה */
-    border-radius: 14px;
-    background: rgba(0, 0, 0, 0.2);
+    height: 240px;
   }
 
-  /* כפתורי החצים שלא ידרסו תוכן */
-  .carousel__btn {
-    width: 46px !important;
-    height: 46px !important;
-    border-radius: 999px !important;
+  .carousel__progressTrack {
+    width: min(300px, 86%);
   }
 
-  .carousel__btn--prev {
-    right: 10px !important;
+  .lightbox__nav {
+    width: 46px;
+    height: 46px;
+    font-size: 30px;
   }
-  .carousel__btn--next {
-    left: 10px !important;
-  }
+}
 
+/* =========================
+   ✅ MOBILE FIX: "המלצה" לא יעלה על הטקסט
+   - במובייל meta נהיה מתחת לטקסט (לא absolute)
+========================= */
+@media (max-width: 920px) {
   .slide__quote {
-    padding: 14px !important;
-  }
-}
-
-/* -----------------------------
-   ON ME (Mobile)
------------------------------- */
-@media (max-width: 920px) {
-  .onme__grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
+    /* לא צריך רווח של absolute meta */
+    padding-bottom: 16px !important;
+    flex-direction: column !important;
   }
 
-  .onme__media {
-    order: -1; /* תמונה קודם במובייל */
+  .quote__meta {
+    position: static !important; /* ✅ זה הפתרון */
+    margin-top: 12px !important;
+    width: 100% !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
   }
 
-  .onme__img {
-    width: 100%;
-    height: auto;
-    max-height: 65vh;
-    object-fit: cover; /* כאן דווקא סבבה cover */
-    border-radius: 18px;
-  }
-
-  .onme__chips {
-    display: flex !important;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-}
-
-/* -----------------------------
-   CTA Panel (Mobile)
------------------------------- */
-@media (max-width: 920px) {
-  .ctaPanel {
-    display: grid !important;
-    gap: 12px !important;
-    text-align: center;
-  }
-  .ctaPanel .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* ✅ מובייל: להסתיר את ה-badge "המלצה" */
-@media (max-width: 920px) {
   .quote__badge {
-    display: none !important;
+    display: inline-flex !important; /* ✅ נשאר במובייל */
+  }
+
+  .quote__hint {
+    text-align: center !important;
   }
 }
 
+/* ✅ מובייל: מרכז אמיתי לצ'יפים (בואו נכיר) */
 @media (max-width: 920px) {
-  .onme__chip {
-    justify-content: center;
-    text-align: center;
-    gap: 10px;
+  .onme__card .onme__chips {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 18px 0 0 !important;
+    width: 100% !important;
   }
-  .onme__chip {
-    text-align: center;
+
+  .onme__card .onme__chip {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    text-align: center !important;
+    flex: 0 0 auto !important;
   }
 }
