@@ -1481,3 +1481,9 @@ img {
     margin-bottom: 10px !important;
   }
 }
+/* ✅ מובייל: להסתיר את ה-badge "המלצה" */
+@media (max-width: 920px) {
+  .quote__badge {
+    display: none !important;
+  }
+}
