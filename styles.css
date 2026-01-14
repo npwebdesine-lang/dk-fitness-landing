@@ -1257,3 +1257,47 @@ body {
     gap: 10px !important;
   }
 }
+/* ✅ MOBILE: לפני/אחרי נראה פרימיום (בלי letterbox) */
+@media (max-width: 920px) {
+  /* כל בלוק תמונה מקבל יחס קבוע כדי להיראות אחיד */
+  .ba {
+    padding: 0 !important;
+    border-width: 2px !important;
+    border-radius: 18px !important;
+    background: transparent !important;
+    overflow: hidden !important;
+
+    /* יחס שמתאים לרוב תמונות גוף (אפשר לשחק עם זה) */
+    aspect-ratio: 3 / 4; /* יותר "גבוה" */
+  }
+
+  /* התמונה ממלאת את המסגרת בצורה מקצועית */
+  .ba img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover !important; /* ✅ זה מה שמבטל את הפסים */
+    object-position: 50% 20% !important; /* ✅ מרים קצת את הפוקוס (פחות חיתוך ראש) */
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  /* אם עדיין מרגיש גדול מדי – פחות גובה מסביב */
+  .slide {
+    padding: 10px !important;
+    gap: 12px !important;
+  }
+  .slide__media {
+    gap: 12px !important;
+  }
+
+  /* שהתגים "לפני/אחרי" יראו עקביים ונקיים */
+  .ba__cap {
+    top: 10px !important;
+    right: 10px !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+    border-radius: 999px !important;
+    background: rgba(0, 0, 0, 0.45) !important;
+  }
+}
