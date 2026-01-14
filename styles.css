@@ -1231,3 +1231,29 @@ body {
     flex: 0 0 auto !important;
   }
 }
+/* ✅ MOBILE: לראות "יותר" מהתמונות (יותר תוכן במסך, פחות בזבוז מקום) */
+@media (max-width: 920px) {
+  /* פחות ריווח/מסגרת סביב התמונה */
+  .ba {
+    padding: 4px !important;
+    border-width: 1px !important;
+  }
+
+  /* התמונה עצמה — "להתרחק" מעט (קטנה יותר) ועדיין בלי קרופ */
+  .ba img {
+    max-height: 48vh !important; /* היה 70vh — זה מה שגרם לה להיות ענקית */
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* קצת פחות ריווח כללי כדי להרוויח עוד מקום לתמונה */
+  .slide {
+    padding: 10px !important;
+    gap: 12px !important;
+  }
+
+  .slide__media {
+    gap: 10px !important;
+  }
+}
